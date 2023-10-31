@@ -1,0 +1,8 @@
+.main-display {
+  margin-top: 50px;  
+  width: 600px;
+  height: 600px;
+  
+  border: 2px solid;
+  border-radius: 10px;
+}
