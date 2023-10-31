@@ -1,0 +1,13 @@
+.temp-display {
+  height: 45%;
+  width: 80%;
+  margin-top: 50px;
+  border: 2px solid;
+  border-radius: 8px;
+
+  font-size: 200px;
+  text-align: center;
+  vertical-align: center;
+  line-height: 250px;
+
+}
