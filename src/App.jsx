@@ -1,9 +1,11 @@
+import Background from './components/background'
+
 import './App.css'
 
 function App() {
   return (
     <>
-      <h1>Start of something cool</h1>
+      <Background />
     </>
   )
 }
