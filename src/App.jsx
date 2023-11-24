@@ -49,7 +49,7 @@ function App() {
   return (
     <>
       <Background />
-      <SearchBar location={location}/>
+      <SearchBar location={location} setLocation={setLocation}/>
       <Display tempF={tempF}/>
     </>
   )
