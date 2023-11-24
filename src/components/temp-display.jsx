@@ -1,9 +1,14 @@
 import '../styles/temp-display.css'
+import PropTypes from 'prop-types'
 
-export default function TempDisplay() {
+export default function TempDisplay( { tempF }) {
   return (
     <div className="temp-display">
-      60
+      {tempF}
     </div>
   )
+}
+
+TempDisplay.propTypes = {
+  tempF: PropTypes.number,
 }

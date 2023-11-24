@@ -1,13 +1,15 @@
 import TempDisplay from './temp-display'
 import ForecastDisplay from './forecast-display'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import PropTypes from 'prop-types'
 
 import '../styles/display.css'
 
 export default function Display( { location, setLocation }) {
+  const [tempF, setTempF] = useState(null)
+  
   const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
   
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function Display( { location, setLocation }) {
         return response.json();
       })
       .then(data => {
-        console.log(data)
+        setTempF(data.current.temp_f)
       })
       .catch(error => {
         console.warn(error)
@@ -46,7 +48,7 @@ export default function Display( { location, setLocation }) {
 
   return (
     <div className="main-display">
-      <TempDisplay />
+      <TempDisplay tempF={tempF}/>
       <ForecastDisplay />
     </div>
   )
