@@ -13,7 +13,6 @@
 .search-bar-container {
   display: flex;
   justify-content: end;
-
   height: 50%;
 }
 
@@ -22,9 +21,33 @@
   border: 0;
   padding-left: 10px;
   font-size: 18px;
-  max-width: 180px;
+  height: 100%;
+}
+
+.search-button {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.search-results {
+  background-color: white;
+  color: rgb(15, 15, 15);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.search-results p {
+  height: 35px;
+  border-bottom: 1px dashed rgb(39, 39, 39);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
 }
 
 .search-button img {
   height: 100%;
 }
+

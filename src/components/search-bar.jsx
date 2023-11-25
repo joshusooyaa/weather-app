@@ -31,8 +31,13 @@ export default function SearchBar() {
           return response.json();
         })
         .then(data => {
-          const newLocations = data.map((place) => displayAddress(place.address));
-          setLocations(newLocations);
+          if (Array.isArray(data)) {
+            const newLocations = data.map((place) => displayAddress(place.address));
+            setLocations(newLocations);
+          }
+          else {
+            setLocations([]);
+          }
         })
         .catch((error) => {
           console.error(error)
@@ -52,13 +57,15 @@ export default function SearchBar() {
   return (
     <div className="header">
       <div className="search-bar-container">
-        <input className="search-bar" onChange={handleInput} value={input} type="text" />
+        <div className="search-area">
+          <input className="search-bar" onChange={handleInput} value={input} type="text" />
+          <div className="search-results">
+            {locations.map((location, index) => (
+              <p key={index}>{location}</p>
+            ))}
+          </div>
+        </div>
         <button className="search-button" type="submit"><img src={searchButton} alt="search icon" /></button>
-      </div>
-      <div className="search-results">
-        {locations.map((location, index) => (
-          <div key={index}>{location}</div>
-        ))}
       </div>
     </div>
   )
