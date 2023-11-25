@@ -5,8 +5,9 @@ import '../styles/search-bar.css'
 import searchButton from '../assets/search-bar/search-icon.png'
 
 export default function SearchBar() {
-  const [ input, setInput ] = useState("")
-  const [ locations, setLocations ] = useState([])
+  const [ input, setInput ] = useState("");
+  const [ locations, setLocations ] = useState([]);
+  const [ isFocused, setIsFocused ] = useState(false);
   
   const weatherKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
   const locationKey = import.meta.env.VITE_REACT_APP_LOCATIONIQ_API_KEY;
@@ -52,20 +53,26 @@ export default function SearchBar() {
     setInput(e.target.value);
   }
 
-  
+  const handleFocus = () => {
+    setIsFocused(true);
+  }
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  }
 
   return (
     <div className="header">
       <div className="search-bar-container">
+        <button className={`search-button ${isFocused ? 'active' : ''}`} type="submit" onFocus={handleFocus} onBlur={handleBlur}><img src={searchButton} alt="search icon" /></button>
         <div className="search-area">
-          <input className="search-bar" onChange={handleInput} value={input} type="text" />
-          <div className="search-results">
+          <input className={`search-bar ${isFocused ? 'active' : ''}`} onChange={handleInput} value={input} onFocus={handleFocus} onBlur={handleBlur} type="text" placeholder="Search..."/>
+          <div className={`search-results ${isFocused ? 'active' : ''}`}>
             {locations.map((location, index) => (
               <p key={index}>{location}</p>
             ))}
           </div>
         </div>
-        <button className="search-button" type="submit"><img src={searchButton} alt="search icon" /></button>
       </div>
     </div>
   )
