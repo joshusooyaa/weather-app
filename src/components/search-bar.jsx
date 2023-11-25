@@ -6,9 +6,10 @@ import searchButton from '../assets/search-bar/search-icon.png'
 
 export default function SearchBar() {
   const [ input, setInput ] = useState("")
+  const [ locations, setLocations ] = useState([])
   
   const weatherKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
-  const locationKey = import.meta.env.VITE_REACT_APP_LOCATIONIQ_API_KEY
+  const locationKey = import.meta.env.VITE_REACT_APP_LOCATIONIQ_API_KEY;
 
   const displayAddress = (address) => {
     let primary = address.city || address.town || address.village || address.hamlet;
@@ -30,9 +31,8 @@ export default function SearchBar() {
           return response.json();
         })
         .then(data => {
-          data.forEach((place) => {
-            console.log(displayAddress(place.address))
-          })
+          const newLocations = data.map((place) => displayAddress(place.address));
+          setLocations(newLocations);
         })
         .catch((error) => {
           console.error(error)
@@ -47,11 +47,18 @@ export default function SearchBar() {
     setInput(e.target.value);
   }
 
+  
+
   return (
     <div className="header">
       <div className="search-bar-container">
         <input className="search-bar" onChange={handleInput} value={input} type="text" />
         <button className="search-button" type="submit"><img src={searchButton} alt="search icon" /></button>
+      </div>
+      <div className="search-results">
+        {locations.map((location, index) => (
+          <div key={index}>{location}</div>
+        ))}
       </div>
     </div>
   )
