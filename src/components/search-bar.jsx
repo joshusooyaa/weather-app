@@ -82,6 +82,10 @@ export default function SearchBar( { location, setLocation }) {
 
     console.log(`Now displaying weather for ${locations[index].address.name}`)
     setLocation({lat: lat, long: lon})
+
+    // As a result, reset input and autofill locations
+    setInput('')
+    setLocations([])
   }
 
   return (
