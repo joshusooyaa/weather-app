@@ -22,7 +22,6 @@
   font-size: 18px;
   height: 50px;
   padding: 0;
-  border-radius: 5px;
 
   animation: onExit 1s;
 
@@ -54,19 +53,19 @@
 }
 
 /* 
-Undersatdning cubic-bezier
+Understanding cubic-bezier
 x1: closer to 0 means slower starting animation, farther means faster
 y1: also impacts similarly to how x1 does (but not restricted between 0-1)
 x2: influences ending of animation, higher to 1 faster ending animation
 y2: affects how ending concludes, higher d can result in overshooting end value before settling
 */
-
 .search-button.active ~ .search-area .search-bar,
 .search-bar.active {
   width: 200px;
   background-color: rgba(56, 56, 56, 0.651);
   padding-right: 50px;
   padding-left: 20px;
+  border-bottom: 1px dashed rgb(255, 255, 255);
 
   transition: all .5s cubic-bezier(0.25, 0.25, 0.5, 1.35)
 }
