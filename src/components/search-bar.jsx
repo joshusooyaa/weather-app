@@ -4,7 +4,7 @@ import '../styles/search-bar.css'
 
 import searchButton from '../assets/search-bar/search-icon.png'
 
-export default function SearchBar() {
+export default function SearchBar( { location, setLocation }) {
   const [ input, setInput ] = useState("");
   const [ locations, setLocations ] = useState([]);
   const [ isFocused, setIsFocused ] = useState(false);
@@ -25,6 +25,11 @@ export default function SearchBar() {
     return formatted.join(", ")
   }
 
+  const getGeoLocation = (place) => {
+    console.log(place)
+    console.log(place)
+  }
+
   useEffect(() => {
     const apiTimeout = setTimeout(() => {
       fetch(`https://api.locationiq.com/v1/autocomplete?key=${locationKey}&q=${input}&limit=6`, {mode: 'cors'})
@@ -33,7 +38,7 @@ export default function SearchBar() {
         })
         .then(data => {
           if (Array.isArray(data)) {
-            const newLocations = data.map((place) => displayAddress(place.address));
+            const newLocations = data.map((place) => place);
             setLocations(newLocations);
           }
           else {
@@ -68,8 +73,8 @@ export default function SearchBar() {
         <div className="search-area">
           <input className={`search-bar ${isFocused ? 'active' : ''}`} onChange={handleInput} value={input} onFocus={handleFocus} onBlur={handleBlur} type="text" placeholder="Search..."/>
           <div className={`search-results ${isFocused ? 'active' : ''}`}>
-            {locations.map((location, index) => (
-              <p key={index}>{location}</p>
+            {locations.map((place, index) => (
+              <p key={index}>{displayAddress(place.address)}</p>
             ))}
           </div>
         </div>
