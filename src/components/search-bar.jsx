@@ -80,6 +80,7 @@ export default function SearchBar( { location, setLocation }) {
     const lat = locations[index].lat
     const lon = locations[index].lon
 
+    console.log(`Now displaying weather for ${locations[index].address.name}`)
     setLocation({lat: lat, long: lon})
   }
 

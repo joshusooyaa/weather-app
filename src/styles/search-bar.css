@@ -67,7 +67,7 @@ y2: affects how ending concludes, higher d can result in overshooting end value 
   padding-left: 20px;
   border-bottom: 1px dashed rgb(255, 255, 255);
 
-  transition: all .5s cubic-bezier(0.25, 0.25, 0.5, 1.35)
+  transition: all .5s cubic-bezier(0.25, 0.25, 0.5, 1.35);
 }
 
 .search-button.active {
@@ -81,14 +81,14 @@ y2: affects how ending concludes, higher d can result in overshooting end value 
   max-width: 0;
   overflow: hidden;
   background-color: transparent;
-  padding: 0 10px;
   font-size: 20px;
   transition: max-height 0.5s, linear 0.5s, cubic-bezier(0.25, 0.25, 0.5, 1.35);
 }
 
 .search-results.active {
   max-height: 500px;
-  max-width: 300px;
+  max-width: 320px;
+  width: 320px;
   position: absolute;
   background-color: white;
   color: rgb(15, 15, 15);
@@ -104,13 +104,16 @@ y2: affects how ending concludes, higher d can result in overshooting end value 
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-left: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px 20px;
 }
 
 .search-button img {
   height: 75%;
+}
+
+.search-results p:hover {
+  background-color: rgba(128, 128, 128, 0.274);
+  user-select: none;
 }
 
 
