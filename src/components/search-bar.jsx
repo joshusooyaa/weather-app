@@ -13,10 +13,9 @@ export default function SearchBar( { setLocation }) {
   const searchRef = useRef(null);
   const buttonRef = useRef(null);
   
-  const weatherKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
-
-  // locationIQ api used due to weatherAPI search/autocomplete not working
-  // for some reason weatherAPI started working, but I've decided to keep using locationIQ
+  // Initially weatherAPI search was not working, so I opted to use locationIQ
+  // weatherAPI search does work, and is easier to work with, but I've chosen to
+  // continue using locationIQ
   const locationKey = import.meta.env.VITE_REACT_APP_LOCATIONIQ_API_KEY;
 
   useEffect(() => {
@@ -63,30 +62,15 @@ export default function SearchBar( { setLocation }) {
   };
 
   const enterInput = () => {
-    if (isValidInput) {
-      console.log('here')
+    if (locations[0]) {
+      updateLocation(0)
     }
   }
 
-  const isValidInput = () => {
-    // If the response json returns an empty response from the search
-    // it's an invalid input and will not update location
-    fetch(`http://api.weatherapi.com/v1/search.json?key=${weatherKey}&q=${input}&aqi=no`, {mode: 'cors'})
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log(data)
-      })
-      .catch(error => {
-        console.warn(error)
-      })
-  }
 
   const isButtonActive = () => {
     if (buttonRef.current.classList.contains('active')) {
-      console.log("yes it is active")
-      enterInput;
+      enterInput();
     }
   }
 
@@ -111,7 +95,7 @@ export default function SearchBar( { setLocation }) {
 
   const handleKeyPress = (e) => {
     if (e.key == "Enter") {
-      enterInput
+      enterInput();
     }
   }
 
@@ -135,7 +119,7 @@ export default function SearchBar( { setLocation }) {
             setTimeout(() => {
               handleFocus();
             }, 100);
-            }}
+          }} // timeout so that onClick has priority over onFocus avoiding premature search when not active
           onBlur={handleBlur}
         >
           <img src={searchButton} alt="search icon" />
