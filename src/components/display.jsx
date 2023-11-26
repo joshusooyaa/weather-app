@@ -5,17 +5,16 @@ import PropTypes from 'prop-types'
 import '../styles/display.css'
 import LocationDisplay from './location-display'
 
-export default function Display( { tempF, locationName }) {
+export default function Display( { currentData }) {
   return (
     <div className="main-display">
-      <LocationDisplay locationName={locationName}/>
-      <MainInformation tempF={tempF}/>
+      <LocationDisplay locationName={currentData.location.name}/>
+      <MainInformation currentData={currentData.current}/>
       <ForecastDisplay />
     </div>
   )
 }
 
 Display.propTypes = {
-  tempF: PropTypes.number,
-  locationName: PropTypes.string,
+  currentData: PropTypes.object
 }

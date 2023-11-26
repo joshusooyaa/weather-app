@@ -6,6 +6,8 @@
   right: 0;
   z-index: -1;
   overflow: hidden;
+
+  background-color: black;
 }
 
 .background img {
