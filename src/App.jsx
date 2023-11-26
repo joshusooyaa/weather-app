@@ -64,7 +64,7 @@ function App() {
       {/* Wait for fetch before displaying */}
       {currentData && location && (
         <>
-          <Background code={currentData.current.condition.code}/>
+          <Background code={currentData.current.condition.code} isDay={currentData.current.is_day}/>
           <SearchBar location={location} setLocation={setLocation}/>
           <Display currentData={currentData}/>
         </>
