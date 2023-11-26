@@ -1,13 +1,15 @@
-import TempDisplay from './temp-display'
+import MainInformation from './main-information'
 import ForecastDisplay from './forecast-display'
 import PropTypes from 'prop-types'
 
 import '../styles/display.css'
+import LocationDisplay from './location-display'
 
-export default function Display( { tempF }) {
+export default function Display( { tempF, locationName }) {
   return (
     <div className="main-display">
-      <TempDisplay tempF={tempF}/>
+      <LocationDisplay locationName={locationName}/>
+      <MainInformation tempF={tempF}/>
       <ForecastDisplay />
     </div>
   )
@@ -15,4 +17,5 @@ export default function Display( { tempF }) {
 
 Display.propTypes = {
   tempF: PropTypes.number,
+  locationName: PropTypes.string,
 }

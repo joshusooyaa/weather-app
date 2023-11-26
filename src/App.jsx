@@ -52,7 +52,10 @@ function App() {
       <SearchBar location={location} setLocation={setLocation}/>
       {/* wait for currentData to update state from fetch */}
       {currentData && (
-        <Display tempF={currentData.current.temp_f}/>
+        <Display 
+        tempF={currentData.current.temp_f}
+        locationName={currentData.location.name}
+        />
       )}
     </>
   )

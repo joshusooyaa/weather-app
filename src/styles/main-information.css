@@ -1,0 +1,17 @@
+.temp-display {
+  flex: 3;
+  margin-top: 15px;
+
+  display: flex;
+  align-items: start;
+  justify-content: center;
+
+}
+
+.temp-display h3 {
+  margin: 0;
+  font-weight: normal;
+  
+  font-size: 200px;
+  line-height: .9;
+}
