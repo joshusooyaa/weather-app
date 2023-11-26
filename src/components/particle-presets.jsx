@@ -48,7 +48,7 @@ const lightRainPreset = {
             value: '99bcf8',
         },
         shape: {
-            type: "edge",
+            type: "circle",
         },
         opacity: {
             value: 0.8,
@@ -133,8 +133,13 @@ const snowPreset = {
 };
 
 
-const particlePresets = {
-  "1000_0": snowPreset
-}
+const ParticlePresets = [
+    clearNightPreset,
+    lightRainPreset,
+    heavyRainPreset,
+    snowPreset
+]
+    
 
-export default particlePresets
+
+export default ParticlePresets
