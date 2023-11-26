@@ -7,7 +7,7 @@ import './App.css'
 
 function App() {
   const [location, setLocation] = useState({lat: 51.5072, long: 0.1276});
-  const [tempF, setTempF] = useState(null)
+  const [currentData, setCurrentData] = useState(null)
   
   const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
   
@@ -36,7 +36,7 @@ function App() {
         return response.json();
       })
       .then(data => {
-        setTempF(data.current.temp_f)
+        setCurrentData(data)
       })
       .catch(error => {
         console.warn(error)
@@ -45,11 +45,15 @@ function App() {
 
     fetchWeather(location.lat, location.long)
   }, [location.lat, location.long]);
+
   return (
     <>
       <Background />
       <SearchBar location={location} setLocation={setLocation}/>
-      <Display tempF={tempF}/>
+      {/* wait for currentData to update state from fetch */}
+      {currentData && (
+        <Display tempF={currentData.current.temp_f}/>
+      )}
     </>
   )
 }
