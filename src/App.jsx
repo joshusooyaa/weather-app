@@ -48,11 +48,13 @@ function App() {
 
   return (
     <>
-      <Background />
-      <SearchBar location={location} setLocation={setLocation}/>
-      {/* wait for currentData to update state from fetch */}
-      {currentData && (
-        <Display currentData={currentData}/>
+      {/* Wait for fetch before displaying */}
+      {currentData && location && (
+        <>
+          <Background code={currentData.current.condition.code}/>
+          <SearchBar location={location} setLocation={setLocation}/>
+          <Display currentData={currentData}/>
+        </>
       )}
     </>
   )

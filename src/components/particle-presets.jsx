@@ -1,5 +1,3 @@
-import { EdgesGeometry } from 'three';
-import rainImg from '../assets/rain.png'
 
 const clearNightPreset = { 
   particles: {
@@ -132,14 +130,11 @@ const snowPreset = {
     },
 };
 
-
 const ParticlePresets = [
     clearNightPreset,
     lightRainPreset,
     heavyRainPreset,
     snowPreset
-]
-    
+];
 
-
-export default ParticlePresets
+export default ParticlePresets;
