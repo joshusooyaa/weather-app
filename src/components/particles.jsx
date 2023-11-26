@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 
 const ParticlesComponent = ( {index} ) => {
   const options = useMemo(() => {
-    console.log('updating background')
     return particlePresets[index];
   }, [index]);
   

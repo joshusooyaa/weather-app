@@ -36,7 +36,12 @@ function App() {
         return response.json();
       })
       .then(data => {
-        setCurrentData(data)
+        if (validResponse(data)) {
+          setCurrentData(data)
+        }
+        else {
+          window.alert("Oops! This location does not have weather information.")
+        }
       })
       .catch(error => {
         console.warn(error)
@@ -45,6 +50,14 @@ function App() {
 
     fetchWeather(location.lat, location.long)
   }, [location.lat, location.long]);
+
+  const validResponse = (data) => {
+    if (data.error) {
+      return false;
+    }
+
+    return true;
+  }
 
   return (
     <>
