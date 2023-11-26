@@ -38,6 +38,9 @@ export default function SearchBar( { setLocation }) {
           console.error('Not a valid location: ', error)
         })
       }
+      else {
+        setLocations([])
+      }
     }, 500)
     
     return () => clearTimeout(apiTimeout);
@@ -63,10 +66,9 @@ export default function SearchBar( { setLocation }) {
 
   const enterInput = () => {
     if (locations[0]) {
-      updateLocation(0)
+      updateLocation(0);
     }
   }
-
 
   const isButtonActive = () => {
     if (buttonRef.current.classList.contains('active')) {
@@ -107,8 +109,9 @@ export default function SearchBar( { setLocation }) {
     setLocation({lat: lat, long: lon})
 
     // As a result, reset input and autofill locations
-    setInput('')
-    setLocations([])
+    setInput('');
+    setLocations([]);
+    setIsFocused(false);
   }
 
   return (
