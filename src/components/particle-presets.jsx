@@ -56,12 +56,12 @@ const lightRainPreset = {
             }
         },
         size: {
-            value: 15,
-            random: true,
+            value: 8,
+            random: false,
         },
         move: {
             enable: true,
-            speed: 55,
+            speed: 60,
             direction: "bottom",
             straight: true
         }
