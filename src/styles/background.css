@@ -29,5 +29,5 @@
 
 .sunny-scene {
   background: linear-gradient(to bottom, #4fbae4, #83d8e4);
-  filter: blur(5px);
+  filter: blur(10px);
 }

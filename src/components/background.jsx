@@ -24,10 +24,10 @@ export default function Background( {code, isDay} ) {
   const getIndex = (code) => {
     const ClearSunny = [1000];
     const PartlyCloudy = [1003];
-    const Cloudy = [1006, 1009];
-    const LightRain = [1150, 1153, 1240, 1243, 1246, 1249, 1273, 1276];
-    const RainHeavyRain = [1180, 1183, 1186, 1189, 1192, 1195];
-    const Snowy = [1066, 1069, 1072, 1114, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1261, 1264];
+    const Cloudy = [1006, 1009, 1030, 1135, 1147];
+    const LightRain = [1150, 1183, 1153, 1240, 1243, 1246, 1249, 1273, 1276, 1063, 1168, 1171, 1198, 1201];
+    const RainHeavyRain = [1180, 1186, 1189, 1192, 1195];
+    const Snowy = [1066, 1069, 1072, 1114, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1261, 1264, 1204, 1207, 1255, 1258];
 
     console.log(code)
     if (ClearSunny.includes(code)) {
@@ -47,13 +47,16 @@ export default function Background( {code, isDay} ) {
     } else if (Snowy.includes(code)) {
       return [3, 'snow'];
     }
+    else {
+      console.log("code missing: ", code)
+    }
   }
   
   return (
     <div className={`background ${backgroundClasses}`}>
       <ParticlesComponent index={index}/>
       {isDay == 1 && index == 0 && (
-        <SunnyScene />
+        <SunnyScene/>
       )}
     </div>
   )

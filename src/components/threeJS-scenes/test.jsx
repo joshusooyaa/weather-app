@@ -26,6 +26,9 @@ const SunnyScene = () => {
 
     mountRef.current.appendChild(renderer.domElement);
     
+    const mount = mountRef.current;
+    mount.appendChild(renderer.domElement);
+
     let time = 0;
     const animate = () => {
       requestAnimationFrame(animate);
@@ -39,11 +42,13 @@ const SunnyScene = () => {
     animate();
 
     return () => {
-      mountRef.current.removeChild(renderer.domElement);
+      if (mount) mount.removeChild(renderer.domElement);
       renderer.dispose();
+      geometry.dispose();
+      material.dispose();
     };
   }, []);
-  
+
   return <div ref={mountRef} className="sunny-scene"/>;
 };
 
