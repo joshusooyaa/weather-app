@@ -130,11 +130,43 @@ const snowPreset = {
     },
 };
 
+const sunPreset = {
+    particles: {
+        number: {
+          value: 1, // Set to 1 to have a single particle
+        },
+        color: {
+          value: '#fffc00', // Color of the particle (yellow)
+        },
+        shape: {
+          type: 'circle', // Shape of the particle
+        },
+        opacity: {
+          value: 1, // Set to 1 for full opacity
+        },
+        size: {
+          value: 200, // Size of the particle
+        },
+        move: {
+          enable: false, // Disable particle movement
+        },
+      },
+      interactivity: {
+        events: {
+          onhover: {
+            enable: false, // Disable hover effect
+          },
+        },
+      },
+      retina_detect: true,
+}
+
 const ParticlePresets = [
     clearNightPreset,
     lightRainPreset,
     heavyRainPreset,
-    snowPreset
+    snowPreset,
+    sunPreset
 ];
 
 export default ParticlePresets;

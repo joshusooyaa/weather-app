@@ -3,31 +3,38 @@ import ParticlesComponent from './particles'
 
 import { useState, useEffect } from 'react'
 import particlePresets from './particle-presets'
-import Scene from './threeJS-scenes/test'
+import SunnyScene from './threeJS-scenes/test'
 
 export default function Background( {code, isDay} ) {
   const [ index, setIndex ] = useState(0)
   const [ backgroundClasses, setBackgroundClasses ] = useState('')
-
+  
   useEffect(() => {
     const l = getIndex(code);
     const newIndex = l[0];
     const weather = l[1];
     if (newIndex != index) {
       setIndex(newIndex);
-      setBackgroundClasses(weather + ' ' + isDay)
     }
+
+    setBackgroundClasses(weather + ' _' + isDay)
+
   }, [code])
 
   const getIndex = (code) => {
     const ClearSunny = [1000];
     const PartlyCloudy = [1003];
-    const Cloudy = [1006, 1009, 1030, 1135, 1147];
-    const LightRain = [1063, 1180, 1183];
-    const RainHeavyRain = [1186, 1189, 1192, 1195, 1240, 1243, 1246, 1273, 1276];
-    const Snowy = [1066, 1114, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1255, 1258, 1279, 1282, 1069, 1204, 1207, 1249, 1252, 1261, 1264, 1072, 1150, 1153, 1168, 1171, 1198, 1201];
+    const Cloudy = [1006, 1009];
+    const LightRain = [1150, 1153, 1240, 1243, 1246, 1249, 1273, 1276];
+    const RainHeavyRain = [1180, 1183, 1186, 1189, 1192, 1195];
+    const Snowy = [1066, 1069, 1072, 1114, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1261, 1264];
 
+    console.log(code)
     if (ClearSunny.includes(code)) {
+      if (isDay) {
+        console.log("it's day")
+        return [4, 'clear']
+      }
       return [0, 'clear'];
     } else if (PartlyCloudy.includes(code)) {
       return [0, 'p-cloudy'];
@@ -45,6 +52,9 @@ export default function Background( {code, isDay} ) {
   return (
     <div className={`background ${backgroundClasses}`}>
       <ParticlesComponent index={index}/>
+      {isDay == 1 && index == 0 && (
+        <SunnyScene />
+      )}
     </div>
   )
 }

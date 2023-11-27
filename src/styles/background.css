@@ -6,14 +6,28 @@
   right: 0;
   z-index: -1;
   overflow: hidden;
-
-  background-color: rgb(0, 0, 0);
 }
 
+/* .background.clear._1 {
+  background: linear-gradient(to bottom, #87CEEB, #B0E0E6);
+}
 
+.background.clear._0 {
+  background: linear-gradient(to top, #00060c 30%, #000000);
+} */
 
-.background img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.background._1 {
+  background: linear-gradient(to bottom, #4fbae4, #83d8e4);
+}
+.background._0 {
+  background: linear-gradient(to top, #00060c 15%, #000000);
+}
+
+.background.clear._1 {
+  filter: blur(5px);
+}
+
+.sunny-scene {
+  background: linear-gradient(to bottom, #4fbae4, #83d8e4);
+  filter: blur(5px);
 }
