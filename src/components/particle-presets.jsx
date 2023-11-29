@@ -1,3 +1,5 @@
+import cloudImg from '../assets/cloud.png'
+
 
 const clearNightPreset = { 
   particles: {
@@ -36,6 +38,96 @@ const clearNightPreset = {
     },
   },
 };
+
+const partyCloudyPreset = {
+    particles: {
+        number: {
+          value: 5,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: "#fff"
+        },
+        shape: {
+            type: "image",
+            image: {
+                src: cloudImg,
+                width: 400,
+                height: 200,
+            }
+        },
+        opacity: {
+          value: 1,
+        },
+        size: {
+          value: 450,
+          random: false,
+          anim: {
+            enable: true,
+            speed: 7.5,
+            size_min: 175,
+            sync: false
+          }
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "right",
+          random: false,
+          straight: true,
+          out_mode: "out",
+          bounce: false,
+        }
+      },
+}
+
+const CloudyPreset = {
+    particles: {
+        number: {
+          value: 15,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: "#838383"
+        },
+        shape: {
+            type: "image",
+            image: {
+                src: cloudImg,
+                width: 400,
+                height: 200,
+            }
+        },
+        opacity: {
+          value: 1,
+        },
+        size: {
+          value: 500,
+          random: false,
+          anim: {
+            enable: true,
+            speed: 7.5,
+            size_min: 200,
+            sync: false
+          }
+        },
+        move: {
+          enable: true,
+          speed: .5,
+          direction: "right",
+          random: false,
+          straight: true,
+          out_mode: "out",
+          bounce: false,
+        }
+      },
+}
 
 const lightRainPreset = {
     particles: {
@@ -77,7 +169,7 @@ const heavyRainPreset = {
             value: '003ea7',
         },
         shape: {
-            type: "edge",
+            type: "circle",
         },
         opacity: {
             value: 0.8,
@@ -94,8 +186,9 @@ const heavyRainPreset = {
             enable: true,
             speed: 55,
             direction: "bottom",
-            straight: true
-        }
+            straight: true,
+            out_mode: 'out',
+        },
     },
 };
 
@@ -125,48 +218,20 @@ const snowPreset = {
             enable: true,
             speed: 4,
             direction: "bottom",
-            straight: true
+            straight: false,
+            out_mode: 'out',
         }
     },
 };
 
-const sunPreset = {
-    particles: {
-        number: {
-          value: 1, // Set to 1 to have a single particle
-        },
-        color: {
-          value: '#fffc00', // Color of the particle (yellow)
-        },
-        shape: {
-          type: 'circle', // Shape of the particle
-        },
-        opacity: {
-          value: 1, // Set to 1 for full opacity
-        },
-        size: {
-          value: 200, // Size of the particle
-        },
-        move: {
-          enable: false, // Disable particle movement
-        },
-      },
-      interactivity: {
-        events: {
-          onhover: {
-            enable: false, // Disable hover effect
-          },
-        },
-      },
-      retina_detect: true,
-}
-
 const ParticlePresets = [
     clearNightPreset,
+    partyCloudyPreset,
+    CloudyPreset,
     lightRainPreset,
     heavyRainPreset,
     snowPreset,
-    sunPreset
+    "",
 ];
 
 export default ParticlePresets;
