@@ -131,7 +131,7 @@ const CloudyPreset = {
 const lightRainPreset = {
     particles: {
         number: {
-            value: 1, // Number of particles (raindrops)
+            value: 1, 
         },
         color: {
             value: '99bcf8',
@@ -152,7 +152,7 @@ const lightRainPreset = {
         },
         move: {
             enable: true,
-            speed: 60,
+            speed: 120,
             direction: "bottom",
             straight: true
         }
