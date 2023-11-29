@@ -5,7 +5,6 @@
   left: 0;
   right: 0;
   z-index: -1;
-  overflow: hidden;
 }
 
 /* .background.clear._1 {
@@ -25,6 +24,14 @@
 
 .background.clear._1 {
   filter: blur(5px);
+}
+
+.background.cloudy._0 {
+  background: linear-gradient(to top, #001325 15%, #000000);
+}
+
+.background.cloudy._1 {
+  background: linear-gradient(to bottom, #536369, #535b64);
 }
 
 .sunny-scene {

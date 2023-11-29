@@ -87,7 +87,7 @@ const partyCloudyPreset = {
 const CloudyPreset = {
     particles: {
         number: {
-          value: 15,
+          value: 17,
           density: {
             enable: true,
             value_area: 800
@@ -101,14 +101,14 @@ const CloudyPreset = {
             image: {
                 src: cloudImg,
                 width: 400,
-                height: 200,
+                height: 250,
             }
         },
         opacity: {
           value: 1,
         },
         size: {
-          value: 500,
+          value: 600,
           random: false,
           anim: {
             enable: true,
@@ -124,7 +124,6 @@ const CloudyPreset = {
           random: false,
           straight: true,
           out_mode: "out",
-          bounce: false,
         }
       },
 }
@@ -224,6 +223,35 @@ const snowPreset = {
     },
 };
 
+const heavySnowPreset = {
+    particles: {
+        number: {
+            value: 90, // Number of particles (raindrops)
+        },
+        color: {
+            value: 'd0d0d0',
+        },
+        shape: {
+            type: "circle",
+        },
+        opacity: {
+            value: 0.5,
+            random: false,
+        },
+        size: {
+            value: 15,
+            random: true,
+        },
+        move: {
+            enable: true,
+            speed: 12,
+            direction: "bottom",
+            straight: false,
+            out_mode: 'out',
+        }
+    },
+};
+
 const ParticlePresets = [
     clearNightPreset,
     partyCloudyPreset,
@@ -231,6 +259,7 @@ const ParticlePresets = [
     lightRainPreset,
     heavyRainPreset,
     snowPreset,
+    heavySnowPreset,
     "",
 ];
 
