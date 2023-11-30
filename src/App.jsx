@@ -7,7 +7,8 @@ import './App.css'
 
 function App() {
   const [location, setLocation] = useState({lat: 51.5072, long: 0.1276});
-  const [currentData, setCurrentData] = useState(null)
+  const [currentData, setCurrentData] = useState(null);
+  const [hourlyData, setHourlyData] = useState(null);
   
   const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
   
@@ -48,7 +49,27 @@ function App() {
       })
     }
 
-    fetchWeather(location.lat, location.long)
+    const fetchHourly = (lat, long) => {
+      fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat} ${long}&days=1&aqi=no&alerts=no`, {mode: 'cors'})
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        if (validResponse(data)) {
+          setHourlyData(data)
+        }
+        else {
+          window.alert("Oops! This location does not have weather information.")
+        }
+      })
+      .catch(error => {
+        console.warn(error)
+      });
+    }
+
+    fetchWeather(location.lat, location.long);
+    fetchHourly(location.lat, location.long);
+
   }, [location.lat, location.long]);
 
   const validResponse = (data) => {
@@ -62,11 +83,11 @@ function App() {
   return (
     <>
       {/* Wait for fetch before displaying */}
-      {currentData && location && (
+      {currentData && location && hourlyData && (
         <>
           <Background code={currentData.current.condition.code} isDay={currentData.current.is_day}/>
           <SearchBar location={location} setLocation={setLocation}/>
-          <Display currentData={currentData}/>
+          <Display currentData={currentData} hourlyData={hourlyData}/>
         </>
       )}
     </>
