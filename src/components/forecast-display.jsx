@@ -1,21 +1,47 @@
 
+import { useEffect, useState } from 'react';
+
 import '../styles/forecast-display.css'
 
 export default function ForecastDisplay( { hourlyData } ) {
-  const getNow = () => {
-    const current = hourlyData.current;
-    const temp = current.temp_f;
-    const img = current.condition.icon;
+  const [ hourlyForecast, setHourlyForecast ] = useState([]); 
 
-    return [temp, img]
-  }
+  useEffect(() => {
+    const getNow = () => {
+      const current = hourlyData.current;
+      const temp = current.temp_f;
+      const img = current.condition.icon;
   
-  const getLastUpdate = () => {
-    const lastUpdate = hourlyData.current.last_updated;
-    const time = new Date(lastUpdate);
+      return [temp, img]
+    }
     
-    return time.getHours(); // Returns index value of last update time (ex: 00:00 returns 0)
-  }
+    const getHour = (time) => {
+      time = new Date(time);
+      
+      return time.getHours(); // Returns index value of last update time (ex: 00:00 returns 0)
+    }
+
+    const nowInfo = getNow();
+    const nowHour = getHour(hourlyData.current.last_updated);
+
+    let hourForecast = [];
+
+    // Concat the hour section from both days together
+    let forecastHours = hourlyData.forecast.forecastday[0].hour.concat(hourlyData.forecast.forecastday[1].hour);
+
+    for (let i = nowHour; i < nowHour + 23; i++) {
+      let hourData = forecastHours[i];
+      hourForecast.push({
+        time: getHour(hourData.time),
+        temp: hourData.temp_f,
+        icon: hourData.condition.icon
+      });
+    }
+
+    setHourlyForecast(hourForecast);
+
+  }, [hourlyData])
+  
   
   return (
     <div className="forecast-display">

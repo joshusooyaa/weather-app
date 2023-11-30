@@ -50,7 +50,7 @@ function App() {
     }
 
     const fetchHourly = (lat, long) => {
-      fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat} ${long}&days=1&aqi=no&alerts=no`, {mode: 'cors'})
+      fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat} ${long}&days=2&aqi=no&alerts=no`, {mode: 'cors'})
       .then(response => {
         return response.json();
       })
