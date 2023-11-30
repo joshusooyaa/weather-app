@@ -33,7 +33,7 @@ export default function ForecastDisplay( { hourlyData } ) {
       let hourData = forecastHours[i];
       hourForecast.push({
         time: getHour(hourData.time),
-        temp: hourData.temp_f,
+        temp: Math.round(hourData.temp_f),
         icon: hourData.condition.icon
       });
     }
@@ -48,13 +48,15 @@ export default function ForecastDisplay( { hourlyData } ) {
       <div className="hourly-forecast-module">
         <p className="hour-title">Hourly Forecast</p>
         <div className="hour-section-container">
-          <div className="hour-section">
-            <p className="hour-time">Now</p>
-            <div className='img-container'>
-              <img className="hour-image" src="//cdn.weatherapi.com/weather/64x64/night/143.png" alt="" draggable="false" />
-            </div>
-            <p className="hour-temp">5°</p>
-          </div>
+          {hourlyForecast.map((hour, index) =>(
+            <div key={index} className="hour-section">
+              <p className="hour-time">{index === 0 ? 'Now' : hour.time}</p>
+              <div className='img-container'>
+                <img className="hour-image" src={hour.icon} alt="" draggable="false" />
+              </div>
+              <p className="hour-temp">{hour.temp}°</p>
+            </div> 
+          ))}
         </div>
       </div>
     </div>
