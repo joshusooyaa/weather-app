@@ -102,8 +102,7 @@ y2: affects how ending concludes, higher d can result in overshooting end value 
   max-width: 320px;
   width: 320px;
   position: absolute;
-  background-color: white;
-  color: rgb(15, 15, 15);
+  background-color: rgba(204, 204, 204, 0.623);
   display: flex;
   flex-direction: column;
   transition: max-height 1s 1s cubic-bezier(0.25, 0.25, 0.5, 1.9), visibility 0s linear;
@@ -111,12 +110,13 @@ y2: affects how ending concludes, higher d can result in overshooting end value 
 
 
 .search-results p {
-  border-bottom: 1px dashed rgb(39, 39, 39);
   margin: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   padding: 5px 20px;
+  color: rgb(36, 36, 36);
+  font-size: 17px;
 }
 
 .search-button img {
@@ -125,7 +125,7 @@ y2: affects how ending concludes, higher d can result in overshooting end value 
 }
 
 .search-results p:hover {
-  background-color: rgba(128, 128, 128, 0.274);
+  background-color: rgba(88, 88, 88, 0.274);
   user-select: none;
 }
 

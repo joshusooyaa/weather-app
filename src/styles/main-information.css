@@ -7,7 +7,7 @@
 }
 
 .temp-display {
-  flex: 3;
+  flex: 1;
   margin-top: 15px;
 
   display: flex;

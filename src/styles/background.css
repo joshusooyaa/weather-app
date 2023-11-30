@@ -36,6 +36,7 @@
 
 .background.l-rain._1, .background.rain._1, .background.snow._1, .background.h-snow._1 {
   background: linear-gradient(to bottom, #536369, #535b64);
+  filter: blur(5px);
 }
 
 .sunny-scene {

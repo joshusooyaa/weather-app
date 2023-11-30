@@ -1,12 +1,53 @@
 .forecast-display {
   flex: 1;
   width: 80%;
-  margin-top: 50px;
   margin-bottom: 50px;
   /* border: 2px solid;
   border-radius: 8px; */
 
-  font-size: 200px;
-  text-align: center;
-  vertical-align: center;
+  font-size: 20px;
+}
+
+.hourly-forecast-module {
+  display: flex;
+  flex-direction: column;
+
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 0 7px;
+}
+
+.hour-section-container {
+  display: flex;
+}
+
+.hour-section {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.hour-section .img-container {
+  width: 64px;
+  height: 54px; /* Crop top of image slightly */
+  overflow: hidden;
+  position: relative;
+}
+
+.hour-section .hour-image {
+  position: absolute;
+  top: -10px; /* Crop top of image slightly */
+}
+
+.hour-time {
+  margin: 0;
+}
+
+.hour-title {
+  margin: 0;
+}
+
+.hour-temp {
+  margin: 0;
 }
