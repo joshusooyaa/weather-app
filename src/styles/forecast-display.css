@@ -14,11 +14,16 @@
 
   border: 2px solid;
   border-radius: 8px;
-  padding: 0 7px;
+
+  overflow: hidden;
 }
 
 .hour-section-container {
   display: flex;
+  overflow-x: scroll;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
 }
 
 .hour-section {
@@ -26,6 +31,7 @@
   flex-direction: column;
 
   align-items: center;
+  padding: 0 2px;
 }
 
 .hour-section .img-container {
@@ -47,8 +53,13 @@
 
 .hour-title {
   margin: 0;
+  padding-left: 10px;
 }
 
 .hour-temp {
   margin: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

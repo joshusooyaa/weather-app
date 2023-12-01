@@ -1,10 +1,16 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import '../styles/forecast-display.css'
 
 export default function ForecastDisplay( { hourlyData } ) {
   const [ hourlyForecast, setHourlyForecast ] = useState([]); 
+  const [ isDown, setIsDown ] = useState(false);
+  const [ startMousePosition, setStartMousePosition ] = useState(null);
+  const [ sliderStartingPosition, setSliderStartingPosition ] = useState(null);
+
+  const forecastSliderRef = useRef(null);
+  const sliderContainerRef = useRef(null);
 
   useEffect(() => {
     const getNow = () => {
@@ -42,12 +48,40 @@ export default function ForecastDisplay( { hourlyData } ) {
 
   }, [hourlyData])
   
-  
+  const onMouseDown = (e) => {
+    setIsDown(true);
+    setStartMousePosition(e.pageX - forecastSliderRef.current.offsetLeft);
+    setSliderStartingPosition(forecastSliderRef.current.scrollLeft); 
+  };
+
+  const onMouseMove = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const currentMousePosition = e.pageX - forecastSliderRef.current.offsetLeft; 
+    const distanceToMove = (currentMousePosition - startMousePosition); 
+    forecastSliderRef.current.scrollLeft = sliderStartingPosition - distanceToMove;
+  }
+
+  const onMouseLeave = () => {
+    setIsDown(false);
+  }
+
+  const onMouseUp = () => {
+    setIsDown(false);
+  }
+
+
   return (
     <div className="forecast-display">
-      <div className="hourly-forecast-module">
+      <div ref={sliderContainerRef} className="hourly-forecast-module">
         <p className="hour-title">Hourly Forecast</p>
-        <div className="hour-section-container">
+        <div className="hour-section-container"
+          ref={forecastSliderRef}
+          onMouseDown={onMouseDown}
+          onMouseLeave={onMouseLeave}
+          onMouseUp={onMouseUp}
+          onMouseMove={onMouseMove}
+        >
           {hourlyForecast.map((hour, index) =>(
             <div key={index} className="hour-section">
               <p className="hour-time">{index === 0 ? 'Now' : hour.time}</p>
