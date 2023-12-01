@@ -5,29 +5,19 @@ import '../styles/forecast-display.css'
 
 export default function ForecastDisplay( { hourlyData } ) {
   const [ hourlyForecast, setHourlyForecast ] = useState([]); 
-  const [ isDown, setIsDown ] = useState(false);
-  const [ startMousePosition, setStartMousePosition ] = useState(null);
-  const [ sliderStartingPosition, setSliderStartingPosition ] = useState(null);
 
   const forecastSliderRef = useRef(null);
-  const sliderContainerRef = useRef(null);
+  const isDownRef = useRef(false);
+  const startMousePosition = useRef(null);
+  const sliderStartingPosition = useRef(null);
 
   useEffect(() => {
-    const getNow = () => {
-      const current = hourlyData.current;
-      const temp = current.temp_f;
-      const img = current.condition.icon;
-  
-      return [temp, img]
-    }
-    
     const getHour = (time) => {
       time = new Date(time);
       
       return time.getHours(); // Returns index value of last update time (ex: 00:00 returns 0)
     }
 
-    const nowInfo = getNow();
     const nowHour = getHour(hourlyData.current.last_updated);
 
     let hourForecast = [];
@@ -47,40 +37,42 @@ export default function ForecastDisplay( { hourlyData } ) {
     setHourlyForecast(hourForecast);
 
   }, [hourlyData])
+
+  useEffect(() => {
+    return(() => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    })
+  }, [])
   
   const onMouseDown = (e) => {
-    setIsDown(true);
-    setStartMousePosition(e.pageX - forecastSliderRef.current.offsetLeft);
-    setSliderStartingPosition(forecastSliderRef.current.scrollLeft); 
+    isDownRef.current = true;
+    startMousePosition.current = e.pageX - forecastSliderRef.current.offsetLeft;
+    sliderStartingPosition.current = forecastSliderRef.current.scrollLeft; 
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
   };
 
   const onMouseMove = (e) => {
-    if (!isDown) return;
+    if (!isDownRef.current) return;
     e.preventDefault();
     const currentMousePosition = e.pageX - forecastSliderRef.current.offsetLeft; 
-    const distanceToMove = (currentMousePosition - startMousePosition); 
-    forecastSliderRef.current.scrollLeft = sliderStartingPosition - distanceToMove;
-  }
-
-  const onMouseLeave = () => {
-    setIsDown(false);
+    const distanceToMove = (currentMousePosition - startMousePosition.current); 
+    forecastSliderRef.current.scrollLeft = sliderStartingPosition.current - distanceToMove;
   }
 
   const onMouseUp = () => {
-    setIsDown(false);
+    isDownRef.current = false;
   }
-
 
   return (
     <div className="forecast-display">
-      <div ref={sliderContainerRef} className="hourly-forecast-module">
+      <div className="hourly-forecast-module">
         <p className="hour-title">Hourly Forecast</p>
         <div className="hour-section-container"
           ref={forecastSliderRef}
           onMouseDown={onMouseDown}
-          onMouseLeave={onMouseLeave}
-          onMouseUp={onMouseUp}
-          onMouseMove={onMouseMove}
         >
           {hourlyForecast.map((hour, index) =>(
             <div key={index} className="hour-section">
