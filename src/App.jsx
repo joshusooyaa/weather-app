@@ -69,6 +69,7 @@ function App() {
       });
     }
 
+    console.log(import.meta.env.VITE_REACT_APP_WEATHER_API_KEY);
     fetchWeather(location.lat, location.long);
     fetchHourly(location.lat, location.long);
 
