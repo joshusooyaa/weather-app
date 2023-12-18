@@ -6,11 +6,10 @@
   border-radius: 8px; */
 
   font-size: 20px;
+  margin-top: 20px;
 }
 
 .hourly-forecast-module {
-  margin-top: 20px;
-  
   display: flex;
   flex-direction: column;
 

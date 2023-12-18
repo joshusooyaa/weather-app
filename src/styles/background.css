@@ -7,16 +7,8 @@
   z-index: -1;
 }
 
-/* .background.clear._1 {
-  background: linear-gradient(to bottom, #87CEEB, #B0E0E6);
-}
-
-.background.clear._0 {
-  background: linear-gradient(to top, #00060c 30%, #000000);
-} */
-
 .background._1 {
-  background: linear-gradient(to bottom, #4fbae4, #83d8e4);
+  background: linear-gradient(to bottom, #2f9ac4, #0ca8bd);
 }
 .background._0 {
   background: linear-gradient(to top, #00060c 15%, #000000);
@@ -40,6 +32,6 @@
 }
 
 .sunny-scene {
-  background: linear-gradient(to bottom, #4fbae4, #83d8e4);
+  background: linear-gradient(to bottom, #47a8ce, #83d8e4);
   filter: blur(10px);
 }
