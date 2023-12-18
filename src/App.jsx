@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     const fetchWeather = (lat, long) => {
-      fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat} ${long}&aqi=no`, {mode: 'cors'})
+      fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat} ${long}&aqi=no`, {mode: 'cors'})
       .then(response => {
         return response.json();
       })
@@ -50,7 +50,7 @@ function App() {
     }
 
     const fetchHourly = (lat, long) => {
-      fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat} ${long}&days=2&aqi=no&alerts=no`, {mode: 'cors'})
+      fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat} ${long}&days=2&aqi=no&alerts=no`, {mode: 'cors'})
       .then(response => {
         return response.json();
       })
