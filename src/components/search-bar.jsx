@@ -21,7 +21,7 @@ export default function SearchBar( { setLocation }) {
   useEffect(() => {
     const apiTimeout = setTimeout(() => {
       if (input != '') {
-        fetch(`https://api.locationiq.com/v1/autocomplete?key=${locationKey}&q=${input}&limit=6`, {mode: 'cors'})
+        fetch('https://corsproxy.io/?' + encodeURIComponent(`https://api.locationiq.com/v1/autocomplete?key=${locationKey}&q=${input}&limit=6`), {mode: 'cors'})
         .then(response => {
           return response.json();
         })
